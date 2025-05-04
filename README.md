@@ -15,7 +15,7 @@ nest-ws/
 │   ├── app.module.ts               # Módulo raíz
 │   └── main.ts                     # Punto de entrada
 │
-├── test/                           # Pruebas (pendientes)
+├── test/                           # Pruebas
 └── ...                             # Configuraciones generales
 ```
 
@@ -42,14 +42,12 @@ npm run start  # Iniciar microservicio (puerto 3009)
 |--------|--------|--------------------|
 | `buscarProyectos` | Busca proyectos por criterios | `{ "anio": 2025, "categoria": "investigacion", "titulo": "" }` |
 | `contarProyectosPorCategoria` | Obtiene conteo por categoría | `{}` |
-| `contarProyectosPorTipo` | Cuenta proyectos por tipo (1: Académico, 2: Trabajo Dirigido) | `{}` |
 
 ### 📥 **Eventos recibidos del servidor**  
 | Evento | Descripción | Ejemplo de Respuesta |
 |--------|-------------|----------------------|
 | `resultadosProyectos` | Resultados de búsqueda | `[{ "titulo": "...", "categoria": "investigacion", ... }]` |
 | `resultadoConteoCategorias` | Conteo por categoría | `{ "Investigación": 15, "Social": 8 }` |
-| `resultadoConteoTipos` | Conteo por tipo | `{ "Académico": 20, "Trabajo Dirigido": 12 }` |
 | `errorBusqueda` | Error en operaciones | `{ "status": "error", "message": "..." }` |
 
 ---
@@ -60,35 +58,10 @@ El servicio consume estos recursos HTTP del backend:
   ```json
   {
     "anio": 2025,
-    "categoria": null,
-    "titulo": null
+    "categoria": "",
+    "titulo": ""
   }
   ```
-
----
-
-## 👨💻 **Ejemplo de Cliente WebSocket**  
-```javascript
-const socket = io('ws://localhost:3009');
-
-// Buscar proyectos
-socket.emit('buscarProyectos', {
-  anio: 2025,
-  categoria: "investigacion",
-  titulo: ""
-});
-
-socket.on('resultadosProyectos', (data) => {
-  console.log('Proyectos encontrados:', data);
-});
-
-// Obtener estadísticas
-socket.emit('contarProyectosPorTipo');
-
-socket.on('resultadoConteoTipos', (data) => {
-  console.log('Conteo por tipo:', data);
-});
-```
 
 ---
 
@@ -108,10 +81,6 @@ socket.on('resultadoConteoTipos', (data) => {
 ## 🧪 **Pruebas y Depuración**  
 1. **Herramientas recomendadas:**  
    - Postman (cliente WebSocket)  
-   - `curl` para probar el backend directamente:  
-     ```bash
-     curl -X POST http://localhost:3000/Proyectos -H "Content-Type: application/json" -d '{"anio":2025}'
-     ```
 
 2. **Logs clave en desarrollo:**  
    ```bash
