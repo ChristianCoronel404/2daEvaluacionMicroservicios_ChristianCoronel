@@ -1,5 +1,5 @@
 📡 **Microservicio de Gestión de Proyectos**  
-Este microservicio desarrollado con NestJS permite gestionar proyectos académicos y trabajos dirigidos mediante WebSocket (Socket.IO). Consume endpoints HTTP externos para realizar búsquedas y generar estadísticas en tiempo real.
+Este microservicio desarrollado con NestJS permite gestionar proyectos académicos y trabajos dirigidos mediante WebSocket (Socket.IO). Se encuentra en la carpeta nest-ws, la cual forma parte del backend principal. El microservicio consume endpoints HTTP externos para realizar búsquedas y generar estadísticas en tiempo real.
 
 ---
 
